@@ -381,47 +381,105 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
   var q="?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600";
   q+="&family=Karla:ital,wght@0,400;0,500;0,700;1,400";
   q+="&family=IBM+Plex+Mono:wght@400;500&display=swap";
-  var pc1=document.createElement("link");pc1.rel="preconnect";pc1.href="https://fonts.googleapis.com";
-  var pc2=document.createElement("link");pc2.rel="preconnect";pc2.href="https://fonts.gstatic.com";pc2.crossOrigin="anonymous";
   var l=document.createElement("link");l.rel="stylesheet";l.href=base+q;
-  document.head.appendChild(pc1);document.head.appendChild(pc2);document.head.appendChild(l);
+  document.head.appendChild(l);
 })();
 "use strict";
-const CONFIG={
-  DEMO_MODE:false,
+var CONFIG={
   API_ENDPOINT:"https://ca5fc5190790e573a9eafd8b611366.91.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/19/workflows/f241cfda0597468d8b809d9a566d4492/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pILvl_HyaevmOLX8va2gu1QgWWiZP6QNeqLgKU776Mg",
   EVENT_CODE:"TTT-AI-2026",
   MIN_LENGTH:10,MAX_LENGTH:500,TIMEOUT_MS:90000,MIN_LOADING_MS:3200
 };
-const $=id=>document.getElementById(id);
-const screens=[$("welcome"),$("formScreen"),$("loading"),$("result"),$("errorScreen")];
-const state={latest:null,timers:[],toast:null,lastFocus:null};
-function show(id){screens.forEach(s=>s.hidden=s.id!==id);window.scrollTo({top:0,behavior:"smooth"})}
-function updateCounter(){$("counter").textContent=$("task").value.length+" / "+CONFIG.MAX_LENGTH}
-function clearErrors(){[$("nickname"),$("task")].forEach(x=>x.classList.remove("invalid"));$("nicknameError").textContent="";$("taskError").textContent="";$("consentError").textContent=""}
+function $(id){return document.getElementById(id);}
+var screens=["welcome","formScreen","loading","result","errorScreen"];
+var state={latest:null,timers:[],toast:null,lastFocus:null};
+function show(id){screens.forEach(function(s){$(s).hidden=(s!==id);});window.scrollTo({top:0,behavior:"smooth"});}
+function updateCounter(){$("counter").textContent=$("task").value.length+" / "+CONFIG.MAX_LENGTH;}
+function clearErrors(){[$("nickname"),$("task")].forEach(function(x){x.classList.remove("invalid");});$("nicknameError").textContent="";$("taskError").textContent="";$("consentError").textContent="";}
 function validate(){
-  clearErrors();let first=null;
-  if(!$("nickname").value.trim()){$("nicknameError").textContent="Please enter a nickname.";$("nickname").classList.add("invalid");first=$("nickname")}
-  if($("task").value.trim().length<CONFIG.MIN_LENGTH){$("taskError").textContent="Please describe the task using at least 10 characters.";$("task").classList.add("invalid");first=first||$("task")}
-  if(!$("consent").checked){$("consentError").textContent="Please acknowledge the responsible-use notice.";first=first||$("consent")}
-  if(first){first.focus();return false}return true
+  clearErrors();var first=null;
+  if(!$("nickname").value.trim()){$("nicknameError").textContent="Please enter a nickname.";$("nickname").classList.add("invalid");first=$("nickname");}
+  if($("task").value.trim().length<CONFIG.MIN_LENGTH){$("taskError").textContent="Please describe the task using at least 10 characters.";$("task").classList.add("invalid");first=first||$("task");}
+  if(!$("consent").checked){$("consentError").textContent="Please acknowledge the responsible-use notice.";first=first||$("consent");}
+  if(first){first.focus();return false;}return true;
 }
 function startLoading(){
-  stopLoading();const steps=[...document.querySelectorAll("[data-step]")];steps.forEach(x=>x.className="step");steps[0].classList.add("active");
-  state.timers.push(setTimeout(()=>{steps[0].className="step done";steps[1].classList.add("active")},1000));
-  state.timers.push(setTimeout(()=>{steps[1].className="step done";steps[2].classList.add("active")},2100))
+  stopLoading();var steps=Array.prototype.slice.call(document.querySelectorAll("[data-step]"));steps.forEach(function(x){x.className="step";});steps[0].classList.add("active");
+  state.timers.push(setTimeout(function(){steps[0].className="step done";steps[1].classList.add("active");},1000));
+  state.timers.push(setTimeout(function(){steps[1].className="step done";steps[2].classList.add("active");},2100));
 }
-function stopLoading(){state.timers.forEach(clearTimeout);state.timers=[]}
-const wait=ms=>new Promise(r=>setTimeout(r,ms));
-async function callApi(payload){
-  if(!CONFIG.API_ENDPOINT||CONFIG.API_ENDPOINT.includes("PASTE_YOUR"))throw new Error("Add the Power Automate HTTP POST URL in the CONFIG section.");
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),CONFIG.TIMEOUT_MS);
-  try{
-    const response=await fetch(CONFIG.API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload),signal:controller.signal});
-    const raw=await response.text();let data;
-    try{data=raw?JSON.parse(raw):{}}catch{throw new Error("Power Automate returned a response that was not valid JSON.")}
-    if(!response.ok||data.success===false)throw new Error(data.message||("The analysis service returned status "+response.status+"."));
-    return{
-      recommendedApproach:data.recommendedApproach||"Needs Clarification",
-      why:data.why||"The wording provided is not detailed enough to give a confident recommendation. Try describing what triggers the task and whether the steps are the same each time.",
-      whereYourValueMattersMost:data.whereYourValueMattersMost||"Your value may lie in deciding what should happen with this task, rather than performing every step yourself.",
+function stopLoading(){state.timers.forEach(clearTimeout);state.timers=[];}
+function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
+function callApi(payload){
+  var controller=new AbortController();var timer=setTimeout(function(){controller.abort();},CONFIG.TIMEOUT_MS);
+  return fetch(CONFIG.API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload),signal:controller.signal})
+  .then(function(response){
+    return response.text().then(function(raw){
+      var data={};try{data=raw?JSON.parse(raw):{};}catch(e){throw new Error("Power Automate returned a response that was not valid JSON.");}
+      if(!response.ok||data.success===false){throw new Error((data.message||raw||("Status "+response.status)).toString().slice(0,300));}
+      return{
+        recommendedApproach:data.recommendedApproach||"Needs Clarification",
+        why:data.why||"The wording provided is not detailed enough to give a confident recommendation. Try describing what triggers the task and whether the steps are the same each time.",
+        whereYourValueMattersMost:data.whereYourValueMattersMost||"Your value may lie in deciding what should happen with this task, rather than performing every step yourself.",
+        thinkAboutIt:data.thinkAboutIt||"Which part of this task follows fixed steps, and which part needs your judgement?"
+      };
+    });
+  }).finally(function(){clearTimeout(timer);});
+}
+function reveal(){Array.prototype.slice.call(document.querySelectorAll(".reveal")).forEach(function(card,i){card.classList.remove("show");setTimeout(function(){card.classList.add("show");},100+i*120);});}
+function render(r,nickname){
+  state.latest={recommendedApproach:r.recommendedApproach,why:r.why,whereYourValueMattersMost:r.whereYourValueMattersMost,thinkAboutIt:r.thinkAboutIt,nickname:nickname};
+  $("reportName").textContent=nickname;
+  $("approach").textContent=r.recommendedApproach;
+  $("why").textContent=r.why;
+  $("value").textContent=r.whereYourValueMattersMost;
+  $("thinkAboutIt").textContent=r.thinkAboutIt;
+  var colours={AI:"#C8F04B",Automation:"#9FE0C9",Both:"#C8F04B","Neither":"#E4C7A0","Needs Clarification":"#DEE3DA"};
+  $("approach").style.background=colours[r.recommendedApproach]||"#C8F04B";
+  reveal();
+}
+function submit(e){
+  e.preventDefault();if(!validate())return;
+  var nickname=$("nickname").value.trim(),taskDescription=$("task").value.trim();
+  var payload={nickname:nickname,taskDescription:taskDescription,eventCode:CONFIG.EVENT_CODE,submissionId:(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)),submittedAt:new Date().toISOString()};
+  $("submit").disabled=true;show("loading");startLoading();var started=Date.now();
+  callApi(payload).then(function(result){
+    var left=Math.max(0,CONFIG.MIN_LOADING_MS-(Date.now()-started));
+    return (left?wait(left):Promise.resolve()).then(function(){render(result,nickname);show("result");});
+  }).catch(function(err){
+    $("errorMessage").textContent=(err.name==="AbortError")?"The analysis took longer than expected. Please try again.":err.message;show("errorScreen");
+  }).finally(function(){$("submit").disabled=false;});
+}
+function reset(){stopLoading();$("form").reset();clearErrors();updateCounter();show("welcome");}
+function openModal(m){state.lastFocus=document.activeElement;m.hidden=false;}
+function closeModal(m){m.hidden=true;if(state.lastFocus)state.lastFocus.focus();}
+function toast(msg){$("toast").textContent=msg;$("toast").hidden=false;clearTimeout(state.toast);state.toast=setTimeout(function(){$("toast").hidden=true;},2400);}
+function copyReport(){
+  if(!state.latest)return;var r=state.latest,text=[
+    "AI vs AUTOMATION — TASK ANALYSIS","",
+    "Participant:",r.nickname||"","",
+    "Recommended approach:",r.recommendedApproach||"","",
+    "Why:",r.why||"","",
+    "Where your value matters most:",r.whereYourValueMattersMost||"","",
+    "Think about it:",r.thinkAboutIt||"","",
+    "AI-generated recommendation. Not a final business decision."
+  ].join("\n");
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){toast("Your result has been copied");}).catch(function(){toast("Copying is unavailable on this device");});}else{toast("Copying is unavailable on this device");}
+}
+$("home").onclick=reset;
+$("start").onclick=function(){show("formScreen");};
+$("back").onclick=function(){show("welcome");};
+$("retry").onclick=function(){show("formScreen");};
+$("again").onclick=reset;
+$("copy").onclick=copyReport;
+$("form").onsubmit=submit;
+$("task").oninput=updateCounter;
+Array.prototype.slice.call(document.querySelectorAll(".chip")).forEach(function(x){x.onclick=function(){$("task").value=x.dataset.text;updateCounter();};});
+$("aboutOpen").onclick=function(){openModal($("aboutModal"));};
+$("privacyOpen").onclick=function(){openModal($("privacyModal"));};
+Array.prototype.slice.call(document.querySelectorAll(".close,.shade")).forEach(function(x){x.onclick=function(){closeModal(x.closest(".modal"));};});
+document.onkeydown=function(e){if(e.key==="Escape"){Array.prototype.slice.call(document.querySelectorAll(".modal:not([hidden])")).forEach(closeModal);}};
+updateCounter();show("welcome");
+</script>
+</body>
+</html>
