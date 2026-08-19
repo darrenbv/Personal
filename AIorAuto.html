@@ -19,11 +19,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  margin:0;min-height:100vh;color:var(--body);
-  font-family:var(--sans);font-size:16px;line-height:1.65;background-color:var(--paper);
-  background-image:repeating-linear-gradient(180deg,transparent 0 47px,rgba(22,38,31,.028) 47px 48px);
-}
+body{margin:0;min-height:100vh;color:var(--body);font-family:var(--sans);font-size:16px;line-height:1.65;background-color:var(--paper);background-image:repeating-linear-gradient(180deg,transparent 0 47px,rgba(22,38,31,.028) 47px 48px)}
 button,input,textarea{font:inherit;color:inherit}
 button{border:0;background:none;cursor:pointer}
 [hidden]{display:none!important}
@@ -164,42 +160,13 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
 .close:hover{background:var(--mark)}
 .warning{padding:14px 16px;color:var(--ink);background:rgba(200,240,75,.2);border-left:2px solid var(--ink);border-radius:var(--r-sm);font-size:14px}
 .toast{position:fixed;right:20px;bottom:20px;z-index:20;padding:13px 20px;color:var(--sheet);background:var(--ink);border-radius:var(--r-sm);box-shadow:var(--shadow-lift);font-size:13px;font-weight:500;animation:in .3s ease both}
-@media(max-width:880px){
-  .welcome{grid-template-columns:1fr;gap:8px;padding-top:8px}
-  .art{min-height:330px;order:-1}
-  .welcome-copy{text-align:left}
-  .lead{max-width:none}
-}
-@media(max-width:600px){
-  .app{width:calc(100% - 24px)}
-  .art{min-height:292px}
-  .core{width:146px;height:146px}
-  .core::after{left:20px;right:20px;bottom:36px;height:12px}
-  .core svg{width:70px;height:70px}
-  .o1{width:214px;height:214px}
-  .o2{width:290px;height:290px}
-  .bubble{font-size:12px;padding:7px 12px}
-  .b1{left:-2%}.b2{right:-4%}.b3{left:0}
-  .panel,.loading-card,.error-card,.modal-card{padding:26px 20px}
-  .verdict{padding:26px 22px}
-  .card,.closing{padding:22px}
-  .field-head{flex-direction:column;align-items:flex-start;gap:3px}
-  .chips{display:grid;grid-template-columns:1fr 1fr}
-  .btn{width:100%}
-  .actions{display:grid}
-  .footer{flex-direction:column;align-items:flex-start;gap:8px}
-  .toast{left:20px;right:20px;text-align:center}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-  .mark{background-size:100% 100%}
-  .reveal{opacity:1;transform:none}
-}
+@media(max-width:880px){.welcome{grid-template-columns:1fr;gap:8px;padding-top:8px}.art{min-height:330px;order:-1}.welcome-copy{text-align:left}.lead{max-width:none}}
+@media(max-width:600px){.app{width:calc(100% - 24px)}.art{min-height:292px}.core{width:146px;height:146px}.core::after{left:20px;right:20px;bottom:36px;height:12px}.core svg{width:70px;height:70px}.o1{width:214px;height:214px}.o2{width:290px;height:290px}.bubble{font-size:12px;padding:7px 12px}.b1{left:-2%}.b2{right:-4%}.b3{left:0}.panel,.loading-card,.error-card,.modal-card{padding:26px 20px}.verdict{padding:26px 22px}.card,.closing{padding:22px}.field-head{flex-direction:column;align-items:flex-start;gap:3px}.chips{display:grid;grid-template-columns:1fr 1fr}.btn{width:100%}.actions{display:grid}.footer{flex-direction:column;align-items:flex-start;gap:8px}.toast{left:20px;right:20px;text-align:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.mark{background-size:100% 100%}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <main class="app">
-
 <header class="top">
   <button id="home" class="brand">
     <span class="logo"><svg viewBox="0 0 24 24"><path d="M5 5h14v10H9l-4 4V5Z"></path><path d="m9 11 2 2 4-5"></path></svg></span>
@@ -210,21 +177,15 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
 
 <section id="welcome" class="screen welcome">
   <div class="art">
-    <div class="orbit o1"></div>
-    <div class="orbit o2"></div>
-    <div class="bubble b1">Is this AI?</div>
-    <div class="bubble b2">Or automation?</div>
-    <div class="bubble b3">Maybe both?</div>
+    <div class="orbit o1"></div><div class="orbit o2"></div>
+    <div class="bubble b1">Is this AI?</div><div class="bubble b2">Or automation?</div><div class="bubble b3">Maybe both?</div>
     <div class="core"><svg viewBox="0 0 100 100"><path d="M28 46c3-15 17-25 32-22 14 2 24 14 24 28 0 12-7 21-18 26v9H40v-9c-10-5-16-14-16-25 0-2 .2-5 .8-7"></path><path d="M40 48c3-4 7-6 12-6s10 2 13 6"></path></svg></div>
   </div>
   <div class="welcome-copy">
     <span class="eyebrow">AI vs Automation · Live activity</span>
     <h1>What is <em class="mark">one</em> task that eats your time?</h1>
     <p class="lead">Describe one real task from your working week. In seconds you'll see whether it is better suited to AI, Automation, both, or neither — and where your real value lies.</p>
-    <div class="notice">
-      <div class="notice-dot">✓</div>
-      <div><b>Keep it anonymous and safe</b><span>Use a nickname. Do not enter passwords, customer data, confidential or personal information.</span></div>
-    </div>
+    <div class="notice"><div class="notice-dot">✓</div><div><b>Keep it anonymous and safe</b><span>Enter your group number only. Do not enter passwords, customer data, confidential or personal information.</span></div></div>
     <button id="start" class="btn primary">Analyse my task <svg viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m14 7 5 5-5 5"></path></svg></button>
     <p class="micro">Takes about thirty seconds</p>
   </div>
@@ -240,9 +201,9 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
       <p class="lead">Use your own words. The more specific the task, the more useful the result.</p>
       <form id="form" novalidate>
         <div class="field">
-          <div class="field-head"><label for="nickname">Your nickname</label><span class="hint">No real name needed</span></div>
-          <input id="nickname" maxlength="30" placeholder="For example, CoffeeHero">
-          <p id="nicknameError" class="error"></p>
+          <div class="field-head"><label for="groupNumber">Your group number</label><span class="hint">For example, Group 3</span></div>
+          <input id="groupNumber" maxlength="20" placeholder="For example, Group 3">
+          <p id="groupNumberError" class="error"></p>
         </div>
         <div class="field">
           <div class="field-head"><label for="task">Your everyday task</label><span id="counter" class="counter">0 / 500</span></div>
@@ -271,11 +232,7 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
 
 <section id="loading" class="screen loading" hidden>
   <div class="loading-card">
-    <div class="loader">
-      <div class="ring r1"></div>
-      <div class="ring r2"></div>
-      <div class="loader-core">✦</div>
-    </div>
+    <div class="loader"><div class="ring r1"></div><div class="ring r2"></div><div class="loader-core">✦</div></div>
     <span class="eyebrow">Analysing your task</span>
     <h2>Reading what you shared</h2>
     <p class="lead">Deciding whether this task repeats fixed steps, needs understanding, or both.</p>
@@ -291,39 +248,25 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
   <div class="result-head">
     <div class="check"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"></circle><path d="m15 24 6 6 12-13"></path></svg></div>
     <span class="eyebrow">Your task analysis</span>
-    <h2><span id="reportName">Participant</span>, here is your result</h2>
+    <h2><span id="reportName">Group</span>, here is your result</h2>
     <p>This is a learning recommendation based on the task you described. It is a starting point for discussion, not a final decision.</p>
   </div>
-
   <div id="normalReport" class="report">
     <article class="verdict reveal">
       <span class="label">Recommended approach</span>
       <span id="approach" class="badge">Both</span>
       <small>AI, Automation, Both or Neither — based on the task you described</small>
     </article>
-
     <article class="card reveal">
-      <div class="card-head">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path></svg></div>
-        <div><span class="label">Why</span><h3>The reasoning behind it</h3></div>
-      </div>
+      <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path></svg></div><div><span class="label">Why</span><h3>The reasoning behind it</h3></div></div>
       <p id="why"></p>
     </article>
-
     <article class="card value-card reveal">
-      <div class="card-head">
-        <div class="card-icon accent"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></svg></div>
-        <div><span class="label">Where your value matters most</span><h3>The part only you can do</h3></div>
-      </div>
+      <div class="card-head"><div class="card-icon accent"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></svg></div><div><span class="label">Where your value matters most</span><h3>The part only you can do</h3></div></div>
       <p><span id="value"></span></p>
     </article>
-
-    <article class="closing reveal">
-      <span class="label">Think about it</span>
-      <p id="thinkAboutIt"></p>
-    </article>
+    <article class="closing reveal"><span class="label">Think about it</span><p id="thinkAboutIt"></p></article>
   </div>
-
   <div class="disclaimer">This is an AI-generated recommendation based on the wording you submitted. It is not a diagnosis, an instruction, or a final business decision.</div>
   <div class="actions">
     <button id="again" class="btn primary">Analyse another task</button>
@@ -340,10 +283,7 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
   </div>
 </section>
 
-<footer class="footer">
-  <span>AI vs Automation · Session activity</span>
-  <button id="privacyOpen">Privacy and responsible use</button>
-</footer>
+<footer class="footer"><span>AI vs Automation · Session activity</span><button id="privacyOpen">Privacy and responsible use</button></footer>
 </main>
 
 <div id="aboutModal" class="modal" hidden>
@@ -363,7 +303,7 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
     <button class="close">×</button>
     <span class="eyebrow">Responsible participation</span>
     <h2>Privacy and responsible use</h2>
-    <p>Use a nickname and describe only an ordinary, non-confidential work task.</p>
+    <p>Enter your group number and describe only an ordinary, non-confidential work task.</p>
     <ul>
       <li>Do not enter passwords or authentication codes.</li>
       <li>Do not enter confidential company information.</li>
@@ -376,110 +316,106 @@ input:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3p
 <div id="toast" class="toast" hidden></div>
 
 <script>
-(function loadFonts(){
-  var base="https://fonts.googleapis.com/css2";
-  var q="?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600";
-  q+="&family=Karla:ital,wght@0,400;0,500;0,700;1,400";
-  q+="&family=IBM+Plex+Mono:wght@400;500&display=swap";
-  var l=document.createElement("link");l.rel="stylesheet";l.href=base+q;
-  document.head.appendChild(l);
-})();
-"use strict";
-var CONFIG={
-  API_ENDPOINT:"https://ca5fc5190790e573a9eafd8b611366.91.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/19/workflows/f241cfda0597468d8b809d9a566d4492/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pILvl_HyaevmOLX8va2gu1QgWWiZP6QNeqLgKU776Mg",
-  EVENT_CODE:"TTT-AI-2026",
-  MIN_LENGTH:10,MAX_LENGTH:500,TIMEOUT_MS:90000,MIN_LOADING_MS:3200
+window.onload = function () {
+  "use strict";
+  var CONFIG = {
+    API_ENDPOINT: "https://ca5fc5190790e573a9eafd8b611366.91.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/19/workflows/f241cfda0597468d8b809d9a566d4492/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pILvl_HyaevmOLX8va2gu1QgWWiZP6QNeqLgKU776Mg",
+    EVENT_CODE: "TTT-AI-2026",
+    MIN_LENGTH: 10, MAX_LENGTH: 500, TIMEOUT_MS: 90000, MIN_LOADING_MS: 3200
+  };
+  function $(id){ return document.getElementById(id); }
+  var screens = ["welcome","formScreen","loading","result","errorScreen"];
+  var state = { latest:null, timers:[], toast:null, lastFocus:null };
+  function show(id){ for(var i=0;i<screens.length;i++){ $(screens[i]).hidden = (screens[i]!==id); } window.scrollTo({top:0,behavior:"smooth"}); }
+  function updateCounter(){ $("counter").textContent = $("task").value.length + " / " + CONFIG.MAX_LENGTH; }
+  function clearErrors(){ $("groupNumber").classList.remove("invalid"); $("task").classList.remove("invalid"); $("groupNumberError").textContent=""; $("taskError").textContent=""; $("consentError").textContent=""; }
+  function validate(){
+    clearErrors(); var first=null;
+    if(!$("groupNumber").value.trim()){ $("groupNumberError").textContent="Please enter your group number."; $("groupNumber").classList.add("invalid"); first=$("groupNumber"); }
+    if($("task").value.trim().length < CONFIG.MIN_LENGTH){ $("taskError").textContent="Please describe the task using at least 10 characters."; $("task").classList.add("invalid"); first=first||$("task"); }
+    if(!$("consent").checked){ $("consentError").textContent="Please acknowledge the responsible-use notice."; first=first||$("consent"); }
+    if(first){ first.focus(); return false; } return true;
+  }
+  function startLoading(){
+    stopLoading(); var steps=document.querySelectorAll("[data-step]");
+    for(var i=0;i<steps.length;i++){ steps[i].className="step"; }
+    steps[0].classList.add("active");
+    state.timers.push(setTimeout(function(){ steps[0].className="step done"; steps[1].classList.add("active"); },1000));
+    state.timers.push(setTimeout(function(){ steps[1].className="step done"; steps[2].classList.add("active"); },2100));
+  }
+  function stopLoading(){ for(var i=0;i<state.timers.length;i++){ clearTimeout(state.timers[i]); } state.timers=[]; }
+  function wait(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
+  function callApi(payload){
+    var controller=new AbortController(); var timer=setTimeout(function(){ controller.abort(); }, CONFIG.TIMEOUT_MS);
+    return fetch(CONFIG.API_ENDPOINT,{ method:"POST", headers:{ "Content-Type":"application/json","Accept":"application/json" }, body:JSON.stringify(payload), signal:controller.signal })
+    .then(function(response){
+      return response.text().then(function(raw){
+        var data={}; try{ data = raw ? JSON.parse(raw) : {}; }catch(e){ throw new Error("Power Automate returned a response that was not valid JSON."); }
+        if(!response.ok || data.success===false){ throw new Error((data.message||raw||("Status "+response.status)).toString().slice(0,300)); }
+        return {
+          recommendedApproach: data.recommendedApproach || "Needs Clarification",
+          why: data.why || "The wording provided is not detailed enough to give a confident recommendation. Try describing what triggers the task and whether the steps are the same each time.",
+          whereYourValueMattersMost: data.whereYourValueMattersMost || "Your value may lie in deciding what should happen with this task, rather than performing every step yourself.",
+          thinkAboutIt: data.thinkAboutIt || "Which part of this task follows fixed steps, and which part needs your judgement?"
+        };
+      });
+    }).finally(function(){ clearTimeout(timer); });
+  }
+  function reveal(){ var cards=document.querySelectorAll(".reveal"); for(var i=0;i<cards.length;i++){ (function(card,idx){ card.classList.remove("show"); setTimeout(function(){ card.classList.add("show"); }, 100+idx*120); })(cards[i],i); } }
+  function render(r, groupNumber){
+    state.latest = { recommendedApproach:r.recommendedApproach, why:r.why, whereYourValueMattersMost:r.whereYourValueMattersMost, thinkAboutIt:r.thinkAboutIt, groupNumber:groupNumber };
+    $("reportName").textContent = groupNumber;
+    $("approach").textContent = r.recommendedApproach;
+    $("why").textContent = r.why;
+    $("value").textContent = r.whereYourValueMattersMost;
+    $("thinkAboutIt").textContent = r.thinkAboutIt;
+    var colours = { AI:"#C8F04B", Automation:"#9FE0C9", Both:"#C8F04B", "Neither":"#E4C7A0", "Needs Clarification":"#DEE3DA" };
+    $("approach").style.background = colours[r.recommendedApproach] || "#C8F04B";
+    reveal();
+  }
+  function submit(e){
+    e.preventDefault(); if(!validate()) return;
+    var groupNumber=$("groupNumber").value.trim(), taskDescription=$("task").value.trim();
+    var payload = { groupNumber:groupNumber, taskDescription:taskDescription, eventCode:CONFIG.EVENT_CODE, submissionId:(window.crypto&&crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)), submittedAt:new Date().toISOString() };
+    $("submit").disabled=true; show("loading"); startLoading(); var started=Date.now();
+    callApi(payload).then(function(result){
+      var left=Math.max(0, CONFIG.MIN_LOADING_MS-(Date.now()-started));
+      return (left?wait(left):Promise.resolve()).then(function(){ render(result,groupNumber); show("result"); });
+    }).catch(function(err){
+      $("errorMessage").textContent = (err.name==="AbortError") ? "The analysis took longer than expected. Please try again." : err.message;
+      show("errorScreen");
+    }).finally(function(){ $("submit").disabled=false; });
+  }
+  function reset(){ stopLoading(); $("form").reset(); clearErrors(); updateCounter(); show("welcome"); }
+  function openModal(m){ state.lastFocus=document.activeElement; m.hidden=false; }
+  function closeModal(m){ m.hidden=true; if(state.lastFocus) state.lastFocus.focus(); }
+  function toast(msg){ $("toast").textContent=msg; $("toast").hidden=false; clearTimeout(state.toast); state.toast=setTimeout(function(){ $("toast").hidden=true; },2400); }
+  function copyReport(){
+    if(!state.latest) return; var r=state.latest;
+    var text = ["AI vs AUTOMATION — TASK ANALYSIS","","Group:",r.groupNumber||"","","Recommended approach:",r.recommendedApproach||"","","Why:",r.why||"","","Where your value matters most:",r.whereYourValueMattersMost||"","","Think about it:",r.thinkAboutIt||"","","AI-generated recommendation. Not a final business decision."].join("\n");
+    if(navigator.clipboard){ navigator.clipboard.writeText(text).then(function(){ toast("Your result has been copied"); }).catch(function(){ toast("Copying is unavailable on this device"); }); } else { toast("Copying is unavailable on this device"); }
+  }
+
+  // wiring
+  $("home").onclick = reset;
+  $("start").onclick = function(){ show("formScreen"); };
+  $("back").onclick = function(){ show("welcome"); };
+  $("retry").onclick = function(){ show("formScreen"); };
+  $("again").onclick = reset;
+  $("copy").onclick = copyReport;
+  $("form").onsubmit = submit;
+  $("task").oninput = updateCounter;
+  var chips=document.querySelectorAll(".chip");
+  for(var i=0;i<chips.length;i++){ (function(x){ x.onclick=function(){ $("task").value=x.getAttribute("data-text"); updateCounter(); }; })(chips[i]); }
+  $("aboutOpen").onclick = function(){ openModal($("aboutModal")); };
+  $("privacyOpen").onclick = function(){ openModal($("privacyModal")); };
+  var closers=document.querySelectorAll(".close,.shade");
+  for(var j=0;j<closers.length;j++){ (function(x){ x.onclick=function(){ closeModal(x.closest(".modal")); }; })(closers[j]); }
+  document.onkeydown = function(e){ if(e.key==="Escape"){ var open=document.querySelectorAll(".modal:not([hidden])"); for(var k=0;k<open.length;k++){ closeModal(open[k]); } } };
+
+  updateCounter();
+  show("welcome");
 };
-function $(id){return document.getElementById(id);}
-var screens=["welcome","formScreen","loading","result","errorScreen"];
-var state={latest:null,timers:[],toast:null,lastFocus:null};
-function show(id){screens.forEach(function(s){$(s).hidden=(s!==id);});window.scrollTo({top:0,behavior:"smooth"});}
-function updateCounter(){$("counter").textContent=$("task").value.length+" / "+CONFIG.MAX_LENGTH;}
-function clearErrors(){[$("nickname"),$("task")].forEach(function(x){x.classList.remove("invalid");});$("nicknameError").textContent="";$("taskError").textContent="";$("consentError").textContent="";}
-function validate(){
-  clearErrors();var first=null;
-  if(!$("nickname").value.trim()){$("nicknameError").textContent="Please enter a nickname.";$("nickname").classList.add("invalid");first=$("nickname");}
-  if($("task").value.trim().length<CONFIG.MIN_LENGTH){$("taskError").textContent="Please describe the task using at least 10 characters.";$("task").classList.add("invalid");first=first||$("task");}
-  if(!$("consent").checked){$("consentError").textContent="Please acknowledge the responsible-use notice.";first=first||$("consent");}
-  if(first){first.focus();return false;}return true;
-}
-function startLoading(){
-  stopLoading();var steps=Array.prototype.slice.call(document.querySelectorAll("[data-step]"));steps.forEach(function(x){x.className="step";});steps[0].classList.add("active");
-  state.timers.push(setTimeout(function(){steps[0].className="step done";steps[1].classList.add("active");},1000));
-  state.timers.push(setTimeout(function(){steps[1].className="step done";steps[2].classList.add("active");},2100));
-}
-function stopLoading(){state.timers.forEach(clearTimeout);state.timers=[];}
-function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
-function callApi(payload){
-  var controller=new AbortController();var timer=setTimeout(function(){controller.abort();},CONFIG.TIMEOUT_MS);
-  return fetch(CONFIG.API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload),signal:controller.signal})
-  .then(function(response){
-    return response.text().then(function(raw){
-      var data={};try{data=raw?JSON.parse(raw):{};}catch(e){throw new Error("Power Automate returned a response that was not valid JSON.");}
-      if(!response.ok||data.success===false){throw new Error((data.message||raw||("Status "+response.status)).toString().slice(0,300));}
-      return{
-        recommendedApproach:data.recommendedApproach||"Needs Clarification",
-        why:data.why||"The wording provided is not detailed enough to give a confident recommendation. Try describing what triggers the task and whether the steps are the same each time.",
-        whereYourValueMattersMost:data.whereYourValueMattersMost||"Your value may lie in deciding what should happen with this task, rather than performing every step yourself.",
-        thinkAboutIt:data.thinkAboutIt||"Which part of this task follows fixed steps, and which part needs your judgement?"
-      };
-    });
-  }).finally(function(){clearTimeout(timer);});
-}
-function reveal(){Array.prototype.slice.call(document.querySelectorAll(".reveal")).forEach(function(card,i){card.classList.remove("show");setTimeout(function(){card.classList.add("show");},100+i*120);});}
-function render(r,nickname){
-  state.latest={recommendedApproach:r.recommendedApproach,why:r.why,whereYourValueMattersMost:r.whereYourValueMattersMost,thinkAboutIt:r.thinkAboutIt,nickname:nickname};
-  $("reportName").textContent=nickname;
-  $("approach").textContent=r.recommendedApproach;
-  $("why").textContent=r.why;
-  $("value").textContent=r.whereYourValueMattersMost;
-  $("thinkAboutIt").textContent=r.thinkAboutIt;
-  var colours={AI:"#C8F04B",Automation:"#9FE0C9",Both:"#C8F04B","Neither":"#E4C7A0","Needs Clarification":"#DEE3DA"};
-  $("approach").style.background=colours[r.recommendedApproach]||"#C8F04B";
-  reveal();
-}
-function submit(e){
-  e.preventDefault();if(!validate())return;
-  var nickname=$("nickname").value.trim(),taskDescription=$("task").value.trim();
-  var payload={nickname:nickname,taskDescription:taskDescription,eventCode:CONFIG.EVENT_CODE,submissionId:(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)),submittedAt:new Date().toISOString()};
-  $("submit").disabled=true;show("loading");startLoading();var started=Date.now();
-  callApi(payload).then(function(result){
-    var left=Math.max(0,CONFIG.MIN_LOADING_MS-(Date.now()-started));
-    return (left?wait(left):Promise.resolve()).then(function(){render(result,nickname);show("result");});
-  }).catch(function(err){
-    $("errorMessage").textContent=(err.name==="AbortError")?"The analysis took longer than expected. Please try again.":err.message;show("errorScreen");
-  }).finally(function(){$("submit").disabled=false;});
-}
-function reset(){stopLoading();$("form").reset();clearErrors();updateCounter();show("welcome");}
-function openModal(m){state.lastFocus=document.activeElement;m.hidden=false;}
-function closeModal(m){m.hidden=true;if(state.lastFocus)state.lastFocus.focus();}
-function toast(msg){$("toast").textContent=msg;$("toast").hidden=false;clearTimeout(state.toast);state.toast=setTimeout(function(){$("toast").hidden=true;},2400);}
-function copyReport(){
-  if(!state.latest)return;var r=state.latest,text=[
-    "AI vs AUTOMATION — TASK ANALYSIS","",
-    "Participant:",r.nickname||"","",
-    "Recommended approach:",r.recommendedApproach||"","",
-    "Why:",r.why||"","",
-    "Where your value matters most:",r.whereYourValueMattersMost||"","",
-    "Think about it:",r.thinkAboutIt||"","",
-    "AI-generated recommendation. Not a final business decision."
-  ].join("\n");
-  if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){toast("Your result has been copied");}).catch(function(){toast("Copying is unavailable on this device");});}else{toast("Copying is unavailable on this device");}
-}
-$("home").onclick=reset;
-$("start").onclick=function(){show("formScreen");};
-$("back").onclick=function(){show("welcome");};
-$("retry").onclick=function(){show("formScreen");};
-$("again").onclick=reset;
-$("copy").onclick=copyReport;
-$("form").onsubmit=submit;
-$("task").oninput=updateCounter;
-Array.prototype.slice.call(document.querySelectorAll(".chip")).forEach(function(x){x.onclick=function(){$("task").value=x.dataset.text;updateCounter();};});
-$("aboutOpen").onclick=function(){openModal($("aboutModal"));};
-$("privacyOpen").onclick=function(){openModal($("privacyModal"));};
-Array.prototype.slice.call(document.querySelectorAll(".close,.shade")).forEach(function(x){x.onclick=function(){closeModal(x.closest(".modal"));};});
-document.onkeydown=function(e){if(e.key==="Escape"){Array.prototype.slice.call(document.querySelectorAll(".modal:not([hidden])")).forEach(closeModal);}};
-updateCounter();show("welcome");
 </script>
 </body>
 </html>
