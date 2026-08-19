@@ -414,7 +414,7 @@ function startLoading(){
 function stopLoading(){state.timers.forEach(clearTimeout);state.timers=[]}
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function callApi(payload){
-  if(!CONFIG.API_ENDPOINT||CONFIG.API_ENDPOINT.includes("PASTE_YOUR"))throw new Error("Add the Power Automate HTTP POST URL in the CONFIG section.");
+  if(!CONFIG.API_ENDPOINT||CONFIG.API_ENDPOINT.includes("https://ca5fc5190790e573a9eafd8b611366.91.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/19/workflows/f241cfda0597468d8b809d9a566d4492/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=pILvl_HyaevmOLX8va2gu1QgWWiZP6QNeqLgKU776Mg"))throw new Error("Add the Power Automate HTTP POST URL in the CONFIG section.");
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),CONFIG.TIMEOUT_MS);
   try{
     const response=await fetch(CONFIG.API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload),signal:controller.signal});
